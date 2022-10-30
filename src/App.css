@@ -1,0 +1,127 @@
+.App {
+	text-align: center;
+	@apply flex justify-center bg-slate-400;
+}
+
+.centralize {
+	@apply flex justify-center items-center;
+}
+
+.card {
+	@apply my-6  px-6 py-8  rounded-[20px] gradient-black;
+}
+
+.gradient-blue {
+	background: linear-gradient(
+		157.81deg,
+		#def9fa -43.27%,
+		#bef3f5 -21.24%,
+		#9dedf0 12.19%,
+		#7de7eb 29.82%,
+		#5ce1e6 51.94%,
+		#33bbcf 90.29%
+	);
+}
+
+.gradient-red {
+	background: linear-gradient(
+		157.81deg,
+		#fadede -43.27%,
+		#f5bebe -21.24%,
+		#f09d9d 12.19%,
+		#eb7d7d 29.82%,
+		#e65c5c 51.94%,
+		#cf3333 90.29%
+	);
+}
+
+.gradient-yellow {
+	background: linear-gradient(
+		157.81deg,
+		#f9fade -43.27%,
+		#f4f5be -21.24%,
+		#eaf09d 12.19%,
+		#e4eb7d 29.82%,
+		#dde65c 51.94%,
+		#cfca33 90.29%
+	);
+}
+
+.gradient-green {
+	background: linear-gradient(
+		157.81deg,
+		#e0fade -43.27%,
+		#c2f5be -21.24%,
+		#9ef09d 12.19%,
+		#9aeb7d 29.82%,
+		#5ee65c 51.94%,
+		#4dcf33 90.29%
+	);
+}
+
+.gradient-black {
+	background: linear-gradient(
+		-168.39deg,
+		#ffffff -278.56%,
+		#6d6d6d -78.47%,
+		#11101d 91.61%
+	);
+}
+
+.App-logo {
+	height: 40vmin;
+	pointer-events: none;
+}
+
+.button {
+	/* background-color: rebeccapurple;
+	padding: 10px;
+	border-radius: 5px;
+	border: none; */
+	@apply px-6 py-4 max-w-[250px] rounded-[10px];
+}
+
+.button:hover {
+	background-color: gray;
+}
+
+.green {
+	background: green;
+}
+
+.red {
+	background: red;
+}
+
+.yellow {
+	background: yellow;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+	.App-logo {
+		animation: App-logo-spin infinite 20s linear;
+	}
+}
+
+.App-header {
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	font-size: calc(10px + 2vmin);
+	color: white;
+}
+
+.App-link {
+	color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg);
+	}
+}
