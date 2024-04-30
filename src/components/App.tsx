@@ -53,7 +53,7 @@ function App() {
     {
       tag: 'p',
       className: 'mt-2 leading-normal text-gray-700 text-md',
-      text: 'Focused on frontend React applications, primarily addressing issues within a significant management system used by at least 500 individuals, including clients and administrators. Additionally, I handled integrating new designs and necessary npm packages based on the task at hand. Furthermore, I performed C# backend debugging and coding as required, given that the majority of the system is coded in C#.'
+      text: 'Software Developer with experience in frontend and backend technologies including React, NodeJS, ExpressJS, and C#. Skilled in integrating new designs and necessary npm packages based on the task at hand. Experienced in C# backend debugging and coding.'
     }
   ]
 
@@ -105,22 +105,24 @@ function App() {
   const jobs = [
     {
       title: 'Full Stack Web & Mobile Developer',
-      duration: 'December 2021 - April 2022 | WAL Software Solutions',
+      company: 'WAL Software Solutions',
+      duration: 'December 2021 - April 2022',
       responsibilities: [
-        'Focused on frontend React applications, primarily addressing issues within a significant management system used by at least 500 individuals, including clients and administrators. Additionally, I handled integrating new designs and necessary npm packages based on the task at hand. Furthermore, I performed C# backend debugging and coding as required, given that the majority of the system is coded in C#.'
+        'Gained a lot of frontend experience, used Firebase, TailwindCSS, ReactJS, a little bit of WordPress, VueJS, and built apps from scratch using Firebase and ReactJS.'
       ]
     },
     {
       title: 'Junior Frontend Developer',
-      duration:
-        'June 2022 - November 2022 | Tactiv Studios Design and Development',
+      company: 'Tactiv Studios Design and Development',
+      duration: 'June 2022 - November 2022',
       responsibilities: [
-        'Focused on frontend React applications, primarily addressing issues within a significant management system used by at least 500 individuals, including clients and administrators. Additionally, I handled integrating new designs and necessary npm packages based on the task at hand. Furthermore, I performed C# backend debugging and coding as required, given that the majority of the system is coded in C#.'
+        'Primarily focused on translating designs from Figma to code and fixing bugs in Angular.'
       ]
     },
     {
       title: 'Frontend React Developer/Full Stack Developer',
-      duration: 'November 2022 - April 2024 | Steelx Pty Ltd',
+      company: 'Steelx Pty Ltd',
+      duration: 'November 2022 - April 2024',
       responsibilities: [
         'Focused on frontend React applications, primarily addressing issues within a significant management system used by at least 500 individuals, including clients and administrators. Additionally, I handled integrating new designs and necessary npm packages based on the task at hand. Furthermore, I performed C# backend debugging and coding as required, given that the majority of the system is coded in C#.'
       ]
