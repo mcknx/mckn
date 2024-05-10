@@ -104,27 +104,27 @@ function App() {
 
   const jobs = [
     {
-      title: 'Full Stack Web & Mobile Developer',
-      company: 'WAL Software Solutions',
-      duration: 'December 2021 - April 2022',
-      responsibilities: [
-        'Gained a lot of frontend experience, used Firebase, TailwindCSS, ReactJS, a little bit of WordPress, VueJS, and built apps from scratch using Firebase and ReactJS.'
-      ]
-    },
-    {
-      title: 'Junior Frontend Developer',
-      company: 'Tactiv Studios Design and Development',
-      duration: 'June 2022 - November 2022',
-      responsibilities: [
-        'Primarily focused on translating designs from Figma to code and fixing bugs in Angular.'
-      ]
-    },
-    {
       title: 'Frontend React Developer/Full Stack Developer',
       company: 'Steelx Pty Ltd',
       duration: 'November 2022 - April 2024',
       responsibilities: [
         'Focused on frontend React applications, primarily addressing issues within a significant management system used by at least 500 individuals, including clients and administrators. Additionally, I handled integrating new designs and necessary npm packages based on the task at hand. Furthermore, I performed C# backend debugging and coding as required, given that the majority of the system is coded in C#.'
+      ]
+    },
+    {
+      title: 'Frontend Developer',
+      company: 'Tactiv Studios Design and Development',
+      duration: 'April 2022 - November 2022',
+      responsibilities: [
+        'Primarily focused on translating designs from Figma to code and fixing bugs in Angular.'
+      ]
+    },
+    {
+      title: 'Full Stack Web & Mobile Developer',
+      company: 'WAL Software Solutions',
+      duration: 'April 2021 - April 2022',
+      responsibilities: [
+        'Gained a lot of frontend experience, used Firebase, TailwindCSS, ReactJS, a little bit of WordPress, VueJS, and built apps from scratch using Firebase and ReactJS.'
       ]
     }
   ]
@@ -272,9 +272,14 @@ function App() {
                     } break-inside-avoid`}
                   >
                     <header>
-                      <h3 className="font-semibold text-gray-800 text-md leading-snugish">
-                        {job.title}
-                      </h3>
+                      <div className="flex justify-between align-center">
+                        <h3 className="font-semibold text-gray-800 text-md leading-snugish">
+                          {job.title}
+                        </h3>
+                        <p className="p-1.5 text-sm leading-normal font-semibold text-white bg-gray-800 mr-1.6 print:bg-white print:border-inset w-fit">
+                          {job.company}
+                        </p>
+                      </div>
                       <p className="text-sm leading-normal text-gray-500">
                         {job.duration}
                       </p>
