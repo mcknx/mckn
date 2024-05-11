@@ -22,14 +22,14 @@ function App() {
 
   const contactDetails = [
     {
-      href: 'https://mckeenasma.tech',
+      href: 'https://mckeenasma.vercel.app/',
       label: 'Portfolio:',
-      value: 'mckeenasma.tech'
+      value: 'mckeenasma.vercel.app'
     },
     {
       href: 'https://github.com/mcknx',
       label: 'Github:',
-      value: 'mcknx'
+      value: 'github.com/mcknx'
     },
     {
       href: 'mailto:mcknasma@gmail.com',
@@ -65,41 +65,42 @@ function App() {
           name: 'University of the Immaculate Conception',
           period:
             'June 2018 to June 2022 | Bachelor of Science in Information Technology',
-          details: [
-            {
-              label: 'Skills:',
-              value:
-                'Visual Studio Code, Postgres, MongoDB, Firebase, HTML5/CSS, Javascript, ReactJS, React Native, NodeJS, ExpressJS, NextJS, Laravel, Python, Angular, Rest API, Axios, RTK query, Context API Redux, Git, Github, Bitbucket, Trello Jira, TailwindCSS, Material UI, AntD, Bootstrap'
-            }
-          ]
+          details: []
         }
       ]
     }
   ]
 
   const skills = [
-    'HTML5/CSS',
-    'Javascript',
     'ReactJS',
+    'TailwindCSS',
+    'HTML5',
+    'CSS3',
+    'Javascript',
+    'MongoDB',
     'React Native',
     'NodeJS',
+    'Rest API'
+  ]
+
+  const otherSkills = [
     'ExpressJS',
     'NextJS',
+    'Axios',
+    'Context API Redux',
+    'C#',
     'Laravel',
     'Python',
     'Angular',
-    'Rest API',
-    'Axios',
-    'RTK query',
-    'Context API Redux',
-    'Git',
-    'Github',
-    'Bitbucket',
-    'Trello Jira',
-    'TailwindCSS',
+    'VueJS',
     'Material UI',
     'AntD',
-    'Bootstrap'
+    'Bootstrap',
+    'Trello',
+    'Jira',
+    'Git',
+    'Github',
+    'Bitbucket'
   ]
 
   const jobs = [
@@ -165,7 +166,12 @@ function App() {
                         key={index}
                         className="mt-1 leading-normal text-gray-500 transition duration-100 ease-in hover:text-gray-700 text-md"
                       >
-                        <a href={item.href} className="group">
+                        <a
+                          href={item.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="group"
+                        >
                           <span className="mr-2 text-lg font-semibold text-gray-700 leading-snugish">
                             {item.label}
                           </span>
@@ -206,7 +212,7 @@ function App() {
                     {item.schools.map((school, schoolIndex) => (
                       <section
                         key={schoolIndex}
-                        className="mt-2 border-b-2 break-inside-avoid"
+                        className="mt-2 break-inside-avoid"
                       >
                         <header>
                           <h3 className="text-lg font-semibold text-gray-700 leading-snugish">
@@ -233,8 +239,8 @@ function App() {
               </section>
             </section>
 
-            {/* skills */}
             <section className="pb-6 mt-0 mb-4 border-b-4 border-gray-300 first:mt-0 break-inside-avoid">
+              {/* skills */}
               <section className="break-inside-avoid">
                 <h2 className="mb-2 text-lg font-bold tracking-widest text-gray-700 print:font-normal">
                   SKILLS
@@ -248,6 +254,26 @@ function App() {
                           className="p-1.5 mb-1 leading-relaxed text-white bg-gray-800 mr-1.6 print:bg-white print:border-inset"
                         >
                           {skill}
+                        </li>
+                      ))}
+                    </ul>
+                  </section>
+                </section>
+              </section>
+              {/* other skills */}
+              <section className="break-inside-avoid">
+                <h2 className="mb-2 text-lg font-bold tracking-widest text-gray-700 print:font-normal">
+                  OTHER SKILLS
+                </h2>
+                <section className="mb-0 break-inside-avoid">
+                  <section className="mt-1 last:pb-1">
+                    <ul className="flex flex-wrap -mb-1 font-bold leading-relaxed text-md -mr-1.6">
+                      {otherSkills.map((oskill, index) => (
+                        <li
+                          key={index}
+                          className="p-1.5 mb-1 leading-relaxed text-white bg-gray-800 mr-1.6 print:bg-white print:border-inset"
+                        >
+                          {oskill}
                         </li>
                       ))}
                     </ul>
@@ -288,7 +314,7 @@ function App() {
                       {job.responsibilities.map((responsibility, index) => (
                         <li key={index}>
                           <span className="text-gray-500 transform -translate-y-px select-none">
-                            &rsaquo;
+                            &rsaquo;{" "}
                           </span>
                           {responsibility}
                         </li>
