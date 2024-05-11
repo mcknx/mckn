@@ -64,8 +64,7 @@ function App() {
         {
           name: 'University of the Immaculate Conception',
           period:
-            'June 2018 to June 2022 | Bachelor of Science in Information Technology',
-          details: []
+            'June 2018 to June 2022 | Bachelor of Science in Information Technology'
         }
       ]
     }
@@ -222,7 +221,7 @@ function App() {
                             {school.period}
                           </p>
                         </header>
-                        <ul className="mt-2 list-disc list-inside text-gray-800 text-md">
+                        {/* <ul className="mt-2 list-disc list-inside text-gray-800 text-md">
                           {school.details.map((detail, detailIndex) => (
                             <li key={detailIndex}>
                               <span className="font-semibold text-md">
@@ -231,7 +230,7 @@ function App() {
                               {detail.value}
                             </li>
                           ))}
-                        </ul>
+                        </ul> */}
                       </section>
                     ))}
                   </React.Fragment>
@@ -241,7 +240,7 @@ function App() {
 
             <section className="pb-6 mt-0 mb-4 border-b-4 border-gray-300 first:mt-0 break-inside-avoid">
               {/* skills */}
-              <section className="break-inside-avoid">
+              <section className="mt-2 break-inside-avoid">
                 <h2 className="mb-2 text-lg font-bold tracking-widest text-gray-700 print:font-normal">
                   SKILLS
                 </h2>
@@ -261,7 +260,7 @@ function App() {
                 </section>
               </section>
               {/* other skills */}
-              <section className="break-inside-avoid">
+              <section className="mt-2 break-inside-avoid">
                 <h2 className="mb-2 text-lg font-bold tracking-widest text-gray-700 print:font-normal">
                   OTHER SKILLS
                 </h2>
@@ -314,7 +313,7 @@ function App() {
                       {job.responsibilities.map((responsibility, index) => (
                         <li key={index}>
                           <span className="text-gray-500 transform -translate-y-px select-none">
-                            &rsaquo;{" "}
+                            &rsaquo;{' '}
                           </span>
                           {responsibility}
                         </li>
