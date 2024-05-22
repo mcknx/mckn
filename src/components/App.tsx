@@ -108,7 +108,7 @@ function App() {
       company: 'Steelx Pty Ltd',
       duration: 'November 2022 - April 2024',
       responsibilities: [
-        `I demonstrated my exceptional problem-solving skills by integrating an API that streamlined complex tasks for Steelx's SMS system. The system involved various components including Stud Homes, Standard Support Forms, SMS Dashboards, Marketing, and more. My solution simplified tasks across different modules, such as training, technical bulletins, and business operations. This integration significantly enhanced the efficiency and functionality of the system, benefiting over 500 users.`
+        `Demonstrated strong problem-solving skills using ReactJS, TailwindCSS, SASS, C# & .NET. Tasks included UI enhancements, bug fixes, and API integrations, benefiting over 500 users.`
       ]
     },
     {
@@ -116,7 +116,7 @@ function App() {
       company: 'Tactiv Studios Design and Development',
       duration: 'April 2022 - November 2022',
       responsibilities: [
-        'Primarily focused on translating designs from Figma to code and fixing bugs in Angular.'
+        `Focused on translating Figma designs to code, resolving Angular bugs, and setting up Python virtual environments for project execution.`
       ]
     },
     {
@@ -124,7 +124,7 @@ function App() {
       company: 'WAL Software Solutions',
       duration: 'April 2021 - April 2022',
       responsibilities: [
-        'Gained a lot of frontend experience, used Firebase, TailwindCSS, ReactJS, a little bit of WordPress, VueJS, and built apps from scratch using Firebase and ReactJS.'
+        `Developed web skills with Vue.js, React.js, WordPress, Firebase, Mysql, & PostgreSQL, led mobile app improvements, and integrated APIs like Google Maps and Swiper.js for project success.`
       ]
     }
   ]
