@@ -108,7 +108,7 @@ function App() {
       company: 'Steelx Pty Ltd',
       duration: 'November 2022 - April 2024',
       responsibilities: [
-        'Focused on frontend React applications, primarily addressing issues within a significant management system used by at least 500 individuals, including clients and administrators. Additionally, I handled integrating new designs and necessary npm packages based on the task at hand. Furthermore, I performed C# backend debugging and coding as required, given that the majority of the system is coded in C#.'
+        `I demonstrated my exceptional problem-solving skills by integrating an API that streamlined complex tasks for Steelx's SMS system. The system involved various components including Stud Homes, Standard Support Forms, SMS Dashboards, Marketing, and more. My solution simplified tasks across different modules, such as training, technical bulletins, and business operations. This integration significantly enhanced the efficiency and functionality of the system, benefiting over 500 users.`
       ]
     },
     {
