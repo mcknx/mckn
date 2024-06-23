@@ -53,7 +53,7 @@ export const summaryDetails = [
   {
     tag: 'p',
     className: 'mt-2 leading-normal text-gray-700 text-md',
-    text: 'Software Developer with experience in frontend and backend technologies including React, NodeJS, ExpressJS, and C#. Skilled in integrating new designs and necessary npm packages based on the task at hand. Experienced in C# backend debugging and coding.'
+    text: 'Experienced in frontend and full stack development, adeptly translating complex designs into functional code with ReactJS, React Native, Vue.js, Firebase, MySQL, MongoDB, and more. Skilled in improving UI/UX and achieving project success through collaborative problem-solving, deadline management, and mentoring junior team members, fostering efficient project delivery and skill growth.'
   }
 ]
 
@@ -105,27 +105,27 @@ export const otherSkills = [
 
 export const jobs = [
   {
-    title: 'Frontend React Developer/Full Stack Developer',
-    company: 'Steelx Pty Ltd',
+    title: 'Frontend Developer',
+    company: 'Steelx Pty Ltd - Work from Home',
     duration: 'November 2022 - April 2024',
     responsibilities: [
-      `Demonstrated strong problem-solving skills using ReactJS, TailwindCSS, SASS, C# & .NET. Tasks included UI enhancements, bug fixes, and API integrations, benefiting over 500 users.`
+      `During my time at Steelx, I focused on two key projects: an SVG-based shed layout renderer and a workflow designer. The shed layout renderer visualized intricate shed designs, including doors and bays, using SVG elements. The workflow designer outlined tasks in flow diagrams. Using ReactJS, TailwindCSS, and C#, I handled UI enhancements, bug fixes, and API integrations, collaborating with senior developers to improve my problem-solving and technical skills.`
     ]
   },
   {
-    title: 'Frontend Developer',
+    title: 'Frontend Developer - Work from Home',
     company: 'Tactiv Studios Design and Development',
     duration: 'April 2022 - November 2022',
     responsibilities: [
-      `Focused on translating Figma designs to code, resolving Angular bugs, and setting up Python virtual environments for project execution.`
+      `At Tactiv Studios, I specialized in translating intricate Figma designs into code, collaborating closely with designers to ensure precise implementation. This involved handling diverse design-to-code tasks with tailored npm packages from regular designer meetings. By employing ReactJS, TailwindCSS, and Angular, I enhanced UI solutions and integrated APIs, playing a pivotal role in achieving project milestones and optimizing outcomes.`
     ]
   },
   {
-    title: 'Full Stack Web & Mobile Developer',
+    title: 'Full Stack Web & Mobile Developer - Davao City',
     company: 'WAL Software Solutions',
     duration: 'April 2021 - April 2022',
     responsibilities: [
-      `Developed web skills with Vue.js, React.js, WordPress, Firebase, Mysql, & PostgreSQL, led mobile app improvements, and integrated APIs like Google Maps and Swiper.js for project success.`
+      `During my time at WAL Software Solutions, I handled diverse roles from maintaining legacy code to leading projects from inception. Working closely with my manager, I effectively set and met deadlines while guiding junior team members in code setup, bug resolution, and collaborative learning. I significantly contributed to projects like Trial Pulse (mobile frontend), OneStopSnap (fullstack mobile), Sureplus (fullstack web), and Sliver (fullstack web), utilizing technologies such as ReactJS, React Native, Vue.js, Firebase, MySQL, MongoDB, and more. These experiences sharpened my leadership skills and technical awareness, ensuring efficient project delivery and robust skill enhancement.`
     ]
   }
 ]
