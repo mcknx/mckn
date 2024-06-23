@@ -113,16 +113,16 @@ export const jobs = [
     ]
   },
   {
-    title: 'Frontend Developer - Work from Home',
-    company: 'Tactiv Studios Design and Development',
+    title: 'Frontend Developer',
+    company: 'Tactiv Studios Design and Development - Work from Home',
     duration: 'April 2022 - November 2022',
     responsibilities: [
       `At Tactiv Studios, I specialized in translating intricate Figma designs into code, collaborating closely with designers to ensure precise implementation. This involved handling diverse design-to-code tasks with tailored npm packages from regular designer meetings. By employing ReactJS, TailwindCSS, and Angular, I enhanced UI solutions and integrated APIs, playing a pivotal role in achieving project milestones and optimizing outcomes.`
     ]
   },
   {
-    title: 'Full Stack Web & Mobile Developer - Davao City',
-    company: 'WAL Software Solutions',
+    title: 'Full Stack Web & Mobile Developer',
+    company: 'WAL Software Solutions - Davao City',
     duration: 'April 2021 - April 2022',
     responsibilities: [
       `During my time at WAL Software Solutions, I handled diverse roles from maintaining legacy code to leading projects from inception. Working closely with my manager, I effectively set and met deadlines while guiding junior team members in code setup, bug resolution, and collaborative learning. I significantly contributed to projects like Trial Pulse (mobile frontend), OneStopSnap (fullstack mobile), Sureplus (fullstack web), and Sliver (fullstack web), utilizing technologies such as ReactJS, React Native, Vue.js, Firebase, MySQL, MongoDB, and more. These experiences sharpened my leadership skills and technical awareness, ensuring efficient project delivery and robust skill enhancement.`
