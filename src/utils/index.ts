@@ -105,6 +105,14 @@ export const otherSkills = [
 
 export const jobs = [
   {
+    title: 'Full Stack Developer | Mobile Developer',
+    company: 'Faithful Development - Work from Home',
+    duration: 'April 2024 to Present',
+    responsibilities: [
+      `Developed Web, Mobile and Backend solutions. Coordinate with manager regularly.`
+    ]
+  },
+  {
     title: 'Frontend Developer',
     company: 'Steelx Pty Ltd - Work from Home',
     duration: 'November 2022 - April 2024',
