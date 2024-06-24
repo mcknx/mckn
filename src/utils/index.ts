@@ -105,7 +105,7 @@ export const otherSkills = [
 
 export const jobs = [
   {
-    title: 'Full Stack Developer | Mobile Developer',
+    title: 'Full Stack Developer',
     company: 'Faithful Development - Work from Home',
     duration: 'April 2024 to Present',
     responsibilities: [
