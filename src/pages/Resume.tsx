@@ -20,10 +20,10 @@ import {
 
 const projectsImages = [projectImg1, projectImg2, projectImg3]
 
-function App() {
+function Resume() {
   return (
-    <main className="font-jost hyphens-manual mb-16">
-      <section className="p-3 my-auto mx-auto max-w-3xl bg-gray-100 rounded-2xl border-4 border-gray-700 sm:p-9 md:p-16 lg:mt-6 print:border-0 page print:max-w-letter print:max-h-letter print:mx-0 print:my-o xsm:p-8 print:bg-white md:max-w-letter md:h-letter lg:h-letter">
+    <div className="font-jost hyphens-manual mb-16">
+      <section className="p-3 my-auto lg:mx-auto max-w-3xl bg-gray-100 rounded-2xl border-4 border-gray-700 sm:p-9 md:p-16 mt-2 mx-2 lg:mt-6 print:border-0 page print:max-w-letter print:max-h-letter print:mx-0 print:my-o xsm:p-8 print:bg-white md:max-w-letter md:h-letter lg:h-letter">
         <header className="inline-flex justify-between items-baseline mb-2 w-full align-top border-b-4 border-gray-300">
           <section className="block">
             {headerTexts.map((item, index) => (
@@ -222,17 +222,21 @@ function App() {
       {projectsImages.map((image, index) => (
         <section
           key={index}
-          className="my-auto mx-auto max-w-3xl bg-gray-100 rounded-2xl border-4 border-gray-700 lg:mt-6 print:border-0 page print:max-w-letter print:mx-0 print:my-o print:bg-white md:max-w-letter"
+          className="my-lg:auto mx-auto max-w-3xl bg-gray-100 rounded-2xl border-4 border-gray-700 mt-2 mx-2 lg:mt-6 print:border-0 page print:max-w-letter print:mx-0 print:my-o print:bg-white md:max-w-letter"
         >
           <img
             src={image}
             alt={`Project ${index + 1}`}
-            style={{ width: '100%', objectFit: 'contain', borderRadius: '16px' }}
+            style={{
+              width: '100%',
+              objectFit: 'contain',
+              borderRadius: '16px'
+            }}
           />
         </section>
       ))}
-    </main>
+    </div>
   )
 }
 
-export default App
+export default Resume
