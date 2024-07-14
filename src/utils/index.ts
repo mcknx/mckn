@@ -53,7 +53,7 @@ export const summaryDetails = [
   {
     tag: 'p',
     className: 'mt-2 leading-normal text-gray-700 text-md',
-    text: 'Experienced in frontend and full stack development, adeptly translating complex designs into functional code with ReactJS, React Native, Vue.js, Firebase, MySQL, MongoDB, and more. Skilled in improving UI/UX and achieving project success through collaborative problem-solving, deadline management, and mentoring junior team members, fostering efficient project delivery and skill growth.'
+    text: `About myself I'm a guy who's passionate about both the technical side and the user experience. My goal is to create apps that not only perform well but also look great, keeping clients satisfied. If there's room for design improvements, I can draw on my past experience with Figma to meet your needs. I've got some skills in animation and complex layouts, and I'd be eager to learn and deliver 3D designs if that's what you're after. When it comes to app performance issues, I'm here to help too. I've been learning through various resources like YouTube, freeCodeCamp, and Coursera, and now I'm using AI to tailor my training to what I need. I take software design and architecture seriously and always strive to do my best. I've been using AI tools since ChatGPT came out, and lately, I've found Claude AI particularly helpful in my development work.`
   }
 ]
 
