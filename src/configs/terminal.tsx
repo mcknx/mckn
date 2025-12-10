@@ -13,8 +13,9 @@ const terminal: TerminalData[] = [
         content: (
           <div className="py-1">
             <div>
-              Hi, this is Xiaohan Zou. I am a PhD student at the Computer Science and
-              Engineering department of Pennsylvania State University.
+              About myself I'm a guy who's passionate about both the technical side and
+              the user experience. My goal is to create apps that not only perform well
+              but also look great, keeping clients satisfied.
             </div>
           </div>
         )
@@ -23,14 +24,7 @@ const terminal: TerminalData[] = [
         id: "about-interests",
         title: "interests.txt",
         type: "file",
-        content: "Machine Learning / Computer Vision / Multimodal Learning"
-      },
-      {
-        id: "about-who-cares",
-        title: "who-cares.txt",
-        type: "file",
-        content:
-          "I'm looking for a research internship for Summer 2024. I'm open to collaboration on research projects."
+        content: "ReactJS / TailwindCSS / NodeJS / UX Design"
       },
       {
         id: "about-contact",
@@ -42,65 +36,44 @@ const terminal: TerminalData[] = [
               Email:{" "}
               <a
                 className="text-blue-300"
-                href="mailto:renovamenzxh@gmail.com"
+                href="mailto:mcknasma@gmail.com"
                 target="_blank"
                 rel="noreferrer"
               >
-                renovamenzxh@gmail.com
+                mcknasma@gmail.com
               </a>
             </li>
             <li>
               Github:{" "}
               <a
                 className="text-blue-300"
-                href="https://github.com/Renovamen"
+                href="https://github.com/mcknx"
                 target="_blank"
                 rel="noreferrer"
               >
-                @Renovamen
+                @mcknx
               </a>
             </li>
             <li>
+              Portfolio:{" "}
               <a
                 className="text-blue-300"
-                href="https://scholar.google.com/citations?user=RuW6xgMAAAAJ"
+                href="https://mckeenasma.vercel.app/"
                 target="_blank"
                 rel="noreferrer"
               >
-                Google Scholar
+                mckeenasma.vercel.app
               </a>
             </li>
             <li>
-              Linkedin:{" "}
+              Phone:{" "}
               <a
                 className="text-blue-300"
-                href="https://www.linkedin.com/in/xiaohan-zou"
+                href="tel:+639323900204"
                 target="_blank"
                 rel="noreferrer"
               >
-                xiaohan-zou
-              </a>
-            </li>
-            <li>
-              Personal Website:{" "}
-              <a
-                className="text-blue-300"
-                href="https://zxh.me"
-                target="_blank"
-                rel="noreferrer"
-              >
-                https://zxh.me
-              </a>
-            </li>
-            <li>
-              知乎:{" "}
-              <a
-                className="text-blue-300"
-                href="https://www.zhihu.com/people/chao-neng-gui-su"
-                target="_blank"
-                rel="noreferrer"
-              >
-                @西伯利亚大恶龙
+                +639323900204
               </a>
             </li>
           </ul>
