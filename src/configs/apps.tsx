@@ -1,5 +1,6 @@
 import { appBarHeight } from "~/utils";
 import type { AppsData } from "~/types";
+import AvatarApp from "~/components/apps/AvatarApp";
 
 const apps: AppsData[] = [
   {
@@ -78,6 +79,15 @@ const apps: AppsData[] = [
     desktop: false,
     img: "img/icons/github.png",
     link: "https://github.com/Renovamen/playground-macos"
+  },
+  {
+    id: "avatar",
+    title: "Avatar",
+    desktop: true,
+    width: 600,
+    height: 600,
+    img: "img/photo/avatar_3d.png",
+    content: <AvatarApp />
   }
 ];
 

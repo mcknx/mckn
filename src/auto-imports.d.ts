@@ -7,6 +7,8 @@ export {}
 declare global {
   const AppWindow: typeof import('./components/AppWindow')['default']
   const AppleMenu: typeof import('./components/menus/AppleMenu')['default']
+  const AvatarApp: typeof import('./components/apps/AvatarApp')['default']
+  const AvatarScene: typeof import('./components/apps/AvatarScene')['default']
   const Battery: typeof import('./components/menus/Battery')['default']
   const Bear: typeof import('./components/apps/Bear')['default']
   const ControlCenterMenu: typeof import('./components/menus/ControlCenterMenu')['default']
