@@ -1,5 +1,6 @@
 import React from "react";
 import { Rnd } from "react-rnd";
+import useSound from "use-sound";
 import { minMarginX, minMarginY, appBarHeight } from "~/utils";
 
 const FullIcon = ({ size }: { size: number }) => (
@@ -140,6 +141,19 @@ const Window = (props: WindowProps) => {
     width: width
   });
 
+  /* Drag Sound Implementation */
+  const [playRatchet] = useSound("/sounds/ratchet.mp3", {
+    volume: 0.5,
+    interrupt: true
+  });
+  const [playDrop] = useSound("/sounds/button-30.mp3", {
+    volume: 0.5
+  });
+  const [playRelease] = useSound("/sounds/window-release.mp3", {
+    volume: 0.5
+  });
+  const lastSoundPos = React.useRef({ x: 0, y: 0 });
+
   return (
     <Rnd
       bounds="parent"
@@ -167,7 +181,24 @@ const Window = (props: WindowProps) => {
               Math.max(0, state.y)
             )
       }}
+      onDragStart={(e, d) => {
+        lastSoundPos.current = { x: d.x, y: d.y };
+      }}
+      onDrag={(e, d) => {
+        // Calculate distance moved since last tick
+        const dist = Math.sqrt(
+          Math.pow(d.x - lastSoundPos.current.x, 2) +
+            Math.pow(d.y - lastSoundPos.current.y, 2)
+        );
+
+        // Play sound every 50px
+        if (dist > 50) {
+          playRatchet();
+          lastSoundPos.current = { x: d.x, y: d.y };
+        }
+      }}
       onDragStop={(e, d) => {
+        playDrop();
         setState({ ...state, x: d.x, y: d.y });
       }}
       onResizeStop={(e, direction, ref, delta, position) => {
