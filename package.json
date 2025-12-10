@@ -61,5 +61,8 @@
     "unplugin-auto-import": "^0.17.5",
     "vite": "^5.2.10"
   },
-  "packageManager": "pnpm@9.0.6"
+  "packageManager": "pnpm@9.0.6",
+  "engines": {
+    "node": ">=18.0.0"
+  }
 }
