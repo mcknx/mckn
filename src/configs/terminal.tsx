@@ -13,9 +13,8 @@ const terminal: TerminalData[] = [
         content: (
           <div className="py-1">
             <div>
-              About myself I'm a guy who's passionate about both the technical side and
-              the user experience. My goal is to create apps that not only perform well
-              but also look great, keeping clients satisfied.
+              Hi, I'm Kenneth. I am a passionate developer building cool things for the
+              web.
             </div>
           </div>
         )
@@ -24,7 +23,7 @@ const terminal: TerminalData[] = [
         id: "about-interests",
         title: "interests.txt",
         type: "file",
-        content: "ReactJS / TailwindCSS / NodeJS / UX Design"
+        content: "Coding / Coffee / Design"
       },
       {
         id: "about-contact",
@@ -36,44 +35,22 @@ const terminal: TerminalData[] = [
               Email:{" "}
               <a
                 className="text-blue-300"
-                href="mailto:mcknasma@gmail.com"
+                href="mailto:kenneth@example.com"
                 target="_blank"
                 rel="noreferrer"
               >
-                mcknasma@gmail.com
+                kenneth@example.com
               </a>
             </li>
             <li>
               Github:{" "}
               <a
                 className="text-blue-300"
-                href="https://github.com/mcknx"
+                href="https://github.com/example"
                 target="_blank"
                 rel="noreferrer"
               >
-                @mcknx
-              </a>
-            </li>
-            <li>
-              Portfolio:{" "}
-              <a
-                className="text-blue-300"
-                href="https://mckeenasma.vercel.app/"
-                target="_blank"
-                rel="noreferrer"
-              >
-                mckeenasma.vercel.app
-              </a>
-            </li>
-            <li>
-              Phone:{" "}
-              <a
-                className="text-blue-300"
-                href="tel:+639323900204"
-                target="_blank"
-                rel="noreferrer"
-              >
-                +639323900204
+                @kenneth
               </a>
             </li>
           </ul>

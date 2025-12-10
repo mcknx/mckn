@@ -43,7 +43,7 @@ export default function AppleMenu({
       </MenuItemGroup>
       <MenuItemGroup border={false}>
         <MenuItem onClick={logout}>Lock Screen</MenuItem>
-        <MenuItem onClick={logout}>Log Out McKeen Asma...</MenuItem>
+        <MenuItem onClick={logout}>Log Out Kenneth...</MenuItem>
       </MenuItemGroup>
     </div>
   );
