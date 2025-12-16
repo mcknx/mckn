@@ -2,6 +2,34 @@ import React, { Suspense, useRef, useEffect, useState } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { OrbitControls, useGLTF, Stage, Grid, Html } from "@react-three/drei";
 import * as THREE from "three";
+import { GoogleGenerativeAI } from "@google/generative-ai";
+
+// -----------------------------------------------------------------------------
+// AI Service (Gemini)
+// -----------------------------------------------------------------------------
+const GEMINI_API_KEY = import.meta.env.VITE_GEMINI_API_KEY || "";
+
+const callGemini = async (text: string): Promise<string> => {
+  try {
+    const genAI = new GoogleGenerativeAI(GEMINI_API_KEY.trim());
+
+    // For the free API key (via AI Studio), 'gemini-1.5-flash-latest' works reliably.
+    const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
+
+    const prompt = `You are a helpful and cool 3D avatar in a portfolio. Keep answers short (max 2 sentences). User says: ${text}`;
+    const result = await model.generateContent(prompt);
+    const response = await result.response;
+    return response.text();
+  } catch (error: any) {
+    console.error("Gemini Request Failed:", error);
+
+    // Check for specific 404 (Model Not Found)
+    if (error.toString().includes("404")) {
+      return "Error 404: The model is acting up. It might be region locked or improved.";
+    }
+    return "I'm connecting to the cloud... try again in a second.";
+  }
+};
 
 // -----------------------------------------------------------------------------
 // 1. Shared State (UI <-> 3D)
@@ -20,7 +48,6 @@ const useVoiceState = () => {
 
 // -----------------------------------------------------------------------------
 // 2. UI Overlay (Outside Canvas)
-// -----------------------------------------------------------------------------
 // -----------------------------------------------------------------------------
 const VoiceOverlay = () => {
   const { isListening, isSpeaking } = useVoiceState();
@@ -60,8 +87,8 @@ const VoiceOverlay = () => {
         </form>
       )}
 
-      {/* Main Button */}
-      <div className="flex gap-2">
+      {/* Main Controls */}
+      <div className="flex gap-2 items-center">
         <div
           className={`px-6 py-3 rounded-full text-white cursor-pointer transition-all border select-none flex items-center gap-3 whitespace-nowrap shadow-xl ${
             isListening
@@ -94,21 +121,20 @@ const VoiceOverlay = () => {
 // -----------------------------------------------------------------------------
 // 3. Voice Avatar (Inside Canvas)
 // -----------------------------------------------------------------------------
-function VoiceAvatar() {
-  // Load BOTH models
-  const closed = useGLTF("/models/avatar.glb");
-  const open = useGLTF("/models/avatar_openmouth.glb");
-
+const VoiceAvatar = () => {
+  // Load ONLY the closed mouth model (Statue Mode)
+  const { scene } = useGLTF("/models/avatar.glb");
   const groupRef = useRef<THREE.Group>(null);
-  const closedRef = useRef<THREE.Group>(null);
-  const openRef = useRef<THREE.Group>(null);
 
   const [isListening, setIsListening] = useState(false);
+  const isListeningRef = useRef(false);
+
   const [transcript, setTranscript] = useState("");
   const [isSpeaking, setIsSpeaking] = useState(false);
 
   // Sync state to UI
   useEffect(() => {
+    isListeningRef.current = isListening;
     window.dispatchEvent(
       new CustomEvent("voice-state-change", {
         detail: { isListening, isSpeaking }
@@ -119,19 +145,10 @@ function VoiceAvatar() {
   const speakRef = useRef(false);
 
   useEffect(() => {
-    // Basic "AI" Response Logic
-    const respond = (text: string) => {
-      let response = "I heard you, but I don't have a brain yet.";
-
-      const lower = text.toLowerCase();
-      if (lower.includes("hello") || lower.includes("hi"))
-        response = "Hello there! Welcome to the portfolio.";
-      if (lower.includes("name")) response = "I am the 3D avatar of McKeen Asma.";
-      if (lower.includes("cool")) response = "Thank you! I think you are cool too.";
-      if (lower.includes("portfolio"))
-        response = "Feel free to look around. The dock is at the bottom.";
-
-      speak(response);
+    // Response Logic (AI)
+    const respond = async (text: string) => {
+      const aiResponse = await callGemini(text);
+      speak(aiResponse);
     };
 
     // Speech Recognition Setup
@@ -149,7 +166,10 @@ function VoiceAvatar() {
 
     recognition.onstart = () => setIsListening(true);
     recognition.onend = () => setIsListening(false);
-    recognition.onerror = () => setIsListening(false);
+    recognition.onerror = (e: any) => {
+      console.error("Speech Error:", e);
+      setIsListening(false);
+    };
 
     recognition.onresult = (event: any) => {
       const text = event.results[0][0].transcript;
@@ -159,10 +179,16 @@ function VoiceAvatar() {
     };
 
     (window as any).triggerMic = () => {
-      try {
-        recognition.start();
-      } catch (e) {
-        console.log(e);
+      if (isListeningRef.current) {
+        console.log("Stopping Mic manually...");
+        recognition.stop();
+      } else {
+        console.log("Starting Mic...");
+        try {
+          recognition.start();
+        } catch (e) {
+          console.warn("Mic start error (likely already running):", e);
+        }
       }
     };
 
@@ -193,31 +219,11 @@ function VoiceAvatar() {
     window.speechSynthesis.speak(utterance);
   };
 
-  useFrame((state) => {
-    if (!closedRef.current || !openRef.current) return;
+  // Optional: Add a very subtle "breathing" or "listening" idle animation if desired later.
+  // For now, it is a pure statue.
 
-    // Default: Closed mouth visible, Open mouth hidden
-    let showOpen = false;
-
-    if (speakRef.current) {
-      const time = state.clock.getElapsedTime();
-      // Stop Motion Effect: Toggle every X frames or based on sine wave threshold
-      // High threshold = choppy look
-      const noise = Math.sin(time * 30) * Math.cos(time * 12);
-      if (noise > 0.2) showOpen = true;
-    }
-
-    closedRef.current.visible = !showOpen;
-    openRef.current.visible = showOpen;
-  });
-
-  return (
-    <group ref={groupRef}>
-      <primitive object={closed.scene} ref={closedRef} />
-      <primitive object={open.scene} ref={openRef} visible={false} />
-    </group>
-  );
-}
+  return <primitive object={scene} ref={groupRef} />;
+};
 
 // -----------------------------------------------------------------------------
 // 4. Camera Rig (Subtle Parallax)
@@ -229,7 +235,7 @@ function CameraRig() {
     const y = state.mouse.y;
 
     // Smoothly interpolate camera position
-    // Base position: [0, 0, 5]
+    // Base position: [0, 0, 5.6]
     // Move x by +/- 0.5
     // Move y by +/- 0.2
     state.camera.position.x = THREE.MathUtils.lerp(
@@ -250,7 +256,7 @@ function CameraRig() {
 }
 
 // -----------------------------------------------------------------------------
-// 4. Main Scene (Default Export)
+// 5. Main Scene (Default Export)
 // -----------------------------------------------------------------------------
 export default function AvatarScene() {
   return (
