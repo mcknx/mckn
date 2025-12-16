@@ -1,6 +1,6 @@
-import React from "react";
-import Slider from "react-rangeslider";
-import "react-rangeslider/lib/index.css";
+import React, { useRef } from "react";
+import { useStore } from "~/stores";
+import { useClickOutside } from "~/hooks";
 import { music } from "~/configs";
 
 interface SliderProps {
@@ -10,17 +10,18 @@ interface SliderProps {
 }
 
 const SliderComponent = ({ icon, value, setValue }: SliderProps) => (
-  <div className="slider flex">
-    <div className="size-7 flex-center bg-c-100" border="t l b c-300 rounded-l-full">
-      <span className={icon} text="xs c-500" />
+  <div className="slider flex w-full">
+    <div className="size-7 flex-center bg-gray-100 border-t border-l border-b border-gray-300 rounded-l-full">
+      <span className={`${icon} text-xs text-gray-500`} />
     </div>
-    <Slider
+    <input
+      type="range"
       min={1}
       max={100}
       value={value}
-      tooltip={false}
-      orientation="horizontal"
-      onChange={(v: number) => setValue(v)}
+      onChange={(e) => setValue(Number(e.target.value))}
+      className="flex-1 h-7 appearance-none bg-white/50 border border-gray-300 rounded-r-full outline-none"
+      style={{ WebkitAppearance: "none", borderRadius: "0 9999px 9999px 0" }}
     />
   </div>
 );
