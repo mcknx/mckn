@@ -1,8 +1,8 @@
 import React from "react";
 import { format } from "date-fns";
 import { isFullScreen } from "~/utils";
-import { music } from "~/configs";
-import type { MacActions } from "~/types";
+import { playlist } from "~/configs/music";
+import type { MacActions, MusicData } from "~/types";
 
 interface TopBarItemProps {
   hideOnMobile?: boolean;
@@ -76,9 +76,12 @@ const TopBar = (props: TopBarProps) => {
     showAppleMenu: false
   });
 
+  const [currentTrackIndex, setCurrentTrackIndex] = useState(0);
+  const currentTrack: MusicData = playlist[currentTrackIndex];
+
   /* eslint-disable-next-line @typescript-eslint/no-unused-vars */
   const [audio, audioState, controls, audioRef] = useAudio({
-    src: music.audio,
+    src: currentTrack.audio,
     autoReplay: true
   });
   const { winWidth, winHeight } = useWindowSize();
@@ -103,7 +106,23 @@ const TopBar = (props: TopBarProps) => {
   useEffect(() => {
     props.setSpotlightBtnRef(spotlightBtnRef);
     controls.volume(volume / 100);
+    // Auto-play on page load
+    controls.play();
   }, []);
+
+  const nextTrack = (): void => {
+    const nextIndex = (currentTrackIndex + 1) % playlist.length;
+    setCurrentTrackIndex(nextIndex);
+    // Audio source will change, need to play after update
+    setTimeout(() => controls.play(), 100);
+  };
+
+  const prevTrack = (): void => {
+    const prevIndex =
+      currentTrackIndex === 0 ? playlist.length - 1 : currentTrackIndex - 1;
+    setCurrentTrackIndex(prevIndex);
+    setTimeout(() => controls.play(), 100);
+  };
 
   useEffect(() => {
     const isFull = isFullScreen();
@@ -238,6 +257,9 @@ const TopBar = (props: TopBarProps) => {
             setBrightness={setSiteBrightness}
             toggleControlCenter={toggleControlCenter}
             btnRef={controlCenterBtnRef}
+            currentTrack={currentTrack}
+            nextTrack={nextTrack}
+            prevTrack={prevTrack}
           />
         )}
 

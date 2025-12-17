@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import { useStore } from "~/stores";
 import { useClickOutside } from "~/hooks";
-import { music } from "~/configs";
+import type { MusicData } from "~/types";
 
 interface SliderProps {
   icon: string;
@@ -21,7 +21,13 @@ const SliderComponent = ({ icon, value, setValue }: SliderProps) => (
       value={value}
       onChange={(e) => setValue(Number(e.target.value))}
       className="flex-1 h-7 appearance-none bg-white/50 border border-gray-300 rounded-r-full outline-none"
-      style={{ WebkitAppearance: "none", borderRadius: "0 9999px 9999px 0" }}
+      style={
+        {
+          WebkitAppearance: "none",
+          borderRadius: "0 9999px 9999px 0",
+          "--range-progress": `${value}%`
+        } as React.CSSProperties
+      }
     />
   </div>
 );
@@ -33,6 +39,9 @@ interface CCMProps {
   setVolume: (value: number) => void;
   playing: boolean;
   btnRef: React.RefObject<HTMLDivElement>;
+  currentTrack: MusicData;
+  nextTrack: () => void;
+  prevTrack: () => void;
 }
 
 export default function ControlCenterMenu({
@@ -41,7 +50,10 @@ export default function ControlCenterMenu({
   setBrightness,
   setVolume,
   playing,
-  btnRef
+  btnRef,
+  currentTrack,
+  nextTrack,
+  prevTrack
 }: CCMProps) {
   const controlCenterRef = useRef<HTMLDivElement>(null);
   const { dark, wifi, brightness, bluetooth, airdrop, fullscreen, volume } = useStore(
@@ -147,16 +159,30 @@ export default function ControlCenterMenu({
         <SliderComponent icon="i-ion:volume-high" value={volume} setValue={setVolume} />
       </div>
       <div className="cc-grid col-span-4 hstack space-x-2.5" p="y-2 l-2 r-4">
-        <img className="w-12 rounded-lg" src={music.cover} alt="cover art" />
+        <img className="w-12 rounded-lg" src={currentTrack.cover} alt="cover art" />
         <div flex-1>
-          <div className="font-medium">{music.title}</div>
-          <div className="cc-text">{music.artist}</div>
+          <div className="font-medium">{currentTrack.title}</div>
+          <div className="cc-text">{currentTrack.artist}</div>
         </div>
+        <span
+          className="i-bi:skip-backward-fill text-lg cursor-pointer"
+          onClick={prevTrack}
+        />
         {playing ? (
-          <span className="i-bi:pause-fill text-2xl" onClick={() => toggleAudio(false)} />
+          <span
+            className="i-bi:pause-fill text-2xl cursor-pointer"
+            onClick={() => toggleAudio(false)}
+          />
         ) : (
-          <span className="i-bi:play-fill text-2xl" onClick={() => toggleAudio(true)} />
+          <span
+            className="i-bi:play-fill text-2xl cursor-pointer"
+            onClick={() => toggleAudio(true)}
+          />
         )}
+        <span
+          className="i-bi:skip-forward-fill text-lg cursor-pointer"
+          onClick={nextTrack}
+        />
       </div>
     </div>
   );
