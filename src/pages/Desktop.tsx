@@ -76,6 +76,9 @@ export default function Desktop(props: MacActions) {
     getAppsData();
   }, []);
 
+  // Initialize ref for openApp (will be assigned later)
+  const openAppRef = useRef<(id: string) => void>(() => {});
+
   const toggleLaunchpad = (target: boolean): void => {
     const r = document.querySelector(`#launchpad`) as HTMLElement;
     if (target) {
@@ -201,6 +204,20 @@ export default function Desktop(props: MacActions) {
       setState({ ...state, minApps });
     }
   };
+
+  // Update ref with latest openApp (to handle closures correctly)
+  openAppRef.current = openApp;
+
+  useEffect(() => {
+    const handleOpenApp = (e: any) => {
+      const appId = e.detail?.id;
+      if (appId && openAppRef.current) {
+        openAppRef.current(appId);
+      }
+    };
+    window.addEventListener("open-app", handleOpenApp);
+    return () => window.removeEventListener("open-app", handleOpenApp);
+  }, []);
 
   const renderAppWindows = () => {
     return apps.map((app) => {
