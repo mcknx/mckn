@@ -462,6 +462,10 @@ const VoiceAvatar = () => {
   const speak = async (text: string) => {
     setIsSpeaking(true);
     speakRef.current = true;
+    // Dispatch event to lower background music
+    window.dispatchEvent(
+      new CustomEvent("avatar-speaking", { detail: { speaking: true } })
+    );
 
     // 1. Try Speechify (Cloned Voice)
     const audioUrl = await callSpeechify(text);
@@ -470,11 +474,18 @@ const VoiceAvatar = () => {
       audio.onended = () => {
         setIsSpeaking(false);
         speakRef.current = false;
+        // Dispatch event to restore background music
+        window.dispatchEvent(
+          new CustomEvent("avatar-speaking", { detail: { speaking: false } })
+        );
         URL.revokeObjectURL(audioUrl); // Cleanup
       };
       audio.play().catch((e) => {
         console.error("Audio Playback Error:", e);
         setIsSpeaking(false);
+        window.dispatchEvent(
+          new CustomEvent("avatar-speaking", { detail: { speaking: false } })
+        );
       });
       return; // Exit if successful
     }
@@ -493,10 +504,16 @@ const VoiceAvatar = () => {
     utterance.onstart = () => {
       setIsSpeaking(true);
       speakRef.current = true;
+      window.dispatchEvent(
+        new CustomEvent("avatar-speaking", { detail: { speaking: true } })
+      );
     };
     utterance.onend = () => {
       setIsSpeaking(false);
       speakRef.current = false;
+      window.dispatchEvent(
+        new CustomEvent("avatar-speaking", { detail: { speaking: false } })
+      );
     };
     window.speechSynthesis.speak(utterance);
   };

@@ -110,6 +110,27 @@ const TopBar = (props: TopBarProps) => {
     controls.play();
   }, []);
 
+  // Lower music volume when avatar speaks
+  useEffect(() => {
+    const handleAvatarSpeaking = (e: CustomEvent<{ speaking: boolean }>) => {
+      if (e.detail.speaking) {
+        // Duck the music to 10% of current volume
+        controls.volume((volume / 100) * 0.1);
+      } else {
+        // Restore original volume
+        controls.volume(volume / 100);
+      }
+    };
+
+    window.addEventListener("avatar-speaking", handleAvatarSpeaking as EventListener);
+    return () => {
+      window.removeEventListener(
+        "avatar-speaking",
+        handleAvatarSpeaking as EventListener
+      );
+    };
+  }, [volume]);
+
   const nextTrack = (): void => {
     const nextIndex = (currentTrackIndex + 1) % playlist.length;
     setCurrentTrackIndex(nextIndex);
