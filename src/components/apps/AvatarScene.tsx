@@ -72,10 +72,19 @@ If the answer is not in the context, say you don't know, but be creative/friendl
 CONTEXT:
 ${systemContext}
 
+AVAILABLE APPS YOU CAN OPEN:
+- safari (web browser)
+- typora or notes (note-taking app with portfolio info)
+- vscode (code editor)
+- terminal (command line)
+- facetime (camera/video)
+- avatar (3D avatar - current app)
+- github (opens GitHub profile in new tab)
+
 RULES:
 1. You ARE McKeen Asma. Speak in the first person ("I").
 2. Keep answers short (max 2 sentences) and conversational.
-3. If asked to open an app, use [[OPEN:app_id]].
+3. If asked to open an app, respond with [[OPEN:app_id]] where app_id is the lowercase id from the list above. For example: "Sure, opening Safari for you! [[OPEN:safari]]"
 4. Output raw text only.`
           },
           {
@@ -293,8 +302,8 @@ const VoiceOverlay = () => {
       </div>
 
       {/* Helper Tip */}
-      <div className="text-white/60 text-xs font-medium tracking-wide bg-black/40 px-3 py-1 rounded-full backdrop-blur-sm border border-white/10 whitespace-nowrap pointer-events-auto">
-        Tip: Say "Open Safari" (Click again to stop)
+      <div className="text-white/60 text-xs font-medium tracking-wide bg-black/40 px-3 py-1 rounded-full backdrop-blur-sm border border-white/10 text-center pointer-events-auto">
+        Try: "Open Safari" · Mic works in Safari only
       </div>
     </div>
   );
