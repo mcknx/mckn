@@ -4,13 +4,13 @@ const bear: BearData[] = [
   {
     id: "profile",
     title: "Profile",
-    icon: "i-fa-solid:paw",
+    icon: "i-ph:user-circle-fill",
     md: [
       {
         id: "about-me",
         title: "About Me",
         file: "markdown/about-me.md",
-        icon: "i-la:dragon",
+        icon: "i-ph:user-fill",
         excerpt: "Passionate and dedicated software developer with a strong..."
       },
       {
@@ -24,7 +24,7 @@ const bear: BearData[] = [
         id: "about-site",
         title: "About This Site",
         file: "markdown/about-site.md",
-        icon: "i-octicon:browser",
+        icon: "i-ph:globe-fill",
         excerpt: "Something about this personal portfolio site..."
       }
     ]
@@ -32,7 +32,7 @@ const bear: BearData[] = [
   {
     id: "project",
     title: "Projects",
-    icon: "i-octicon:repo",
+    icon: "i-ph:code-fill",
     md: [
       {
         id: "flint",

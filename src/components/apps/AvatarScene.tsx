@@ -304,7 +304,7 @@ const VoiceOverlay = () => {
 // 3. Voice Avatar (Inside Canvas)
 // -----------------------------------------------------------------------------
 const VoiceAvatar = () => {
-  const { scene } = useGLTF("/models/avatar.glb");
+  const { scene } = useGLTF("/models/avatar-v1.glb");
   const groupRef = useRef<THREE.Group>(null);
 
   // State

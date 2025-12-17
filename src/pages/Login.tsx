@@ -1,96 +1,64 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { format } from "date-fns";
 import { wallpapers, user } from "~/configs";
 import type { MacActions } from "~/types";
+import { useStore } from "~/stores";
 
 export default function Login(props: MacActions) {
-  const [password, setPassword] = useState("");
-  const [sign, setSign] = useState("Click to enter");
+  const [currentTime, setCurrentTime] = useState(new Date());
   const dark = useStore((state) => state.dark);
 
-  const keyPress = (e: React.KeyboardEvent) => {
-    const keyCode = e.key;
-    if (keyCode === "Enter") loginHandle();
-  };
+  // Update time every second
+  useEffect(() => {
+    const timer = setInterval(() => setCurrentTime(new Date()), 1000);
+    return () => clearInterval(timer);
+  }, []);
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    setPassword(e.target.value);
-  };
-
-  const loginHandle = () => {
-    if (user.password === "" || user.password === password) {
-      // not set password or password correct
-      props.setLogin(true);
-    } else if (password !== "") {
-      // password not null and incorrect
-      setSign("Incorrect password");
-    }
-  };
+  // Handle Enter key to login
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Enter") {
+        props.setLogin(true);
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [props]);
 
   return (
     <div
-      className="size-full login text-center"
+      className="size-full flex flex-col items-center justify-between py-16 cursor-pointer"
       style={{
         background: `url(${
           dark ? wallpapers.night : wallpapers.day
         }) center/cover no-repeat`
       }}
-      onClick={() => loginHandle()}
+      onClick={() => props.setLogin(true)}
     >
-      <div className="inline-block w-auto relative top-1/2 -mt-40">
-        {/* Avatar */}
-        <img className="rounded-full size-24 my-0 mx-auto" src={user.avatar} alt="img" />
-        <div className="font-semibold mt-2 text-xl text-white">{user.name}</div>
-
-        {/* Password Input */}
-        <div className="mx-auto grid grid-cols-5 w-44 h-8 mt-4 rounded-md backdrop-blur-2xl bg-gray-300/50">
-          <input
-            className="text-sm text-white col-start-1 col-span-4 no-outline bg-transparent px-2"
-            type="password"
-            placeholder="Enter Password"
-            onClick={(e) => e.stopPropagation()}
-            onKeyDown={keyPress}
-            value={password}
-            onChange={handleInputChange}
-          />
-          <div className="col-start-5 col-span-1 flex-center">
-            <span className="i-bi:question-square-fill text-white ml-1" />
-          </div>
+      {/* Top: Date and Time */}
+      <div className="text-center text-white mt-8">
+        <div className="text-xl font-light tracking-wide opacity-90">
+          {format(currentTime, "EEE MMM d")}
         </div>
-
-        <div mt-2 cursor-pointer text="sm gray-200">
-          {sign}
+        <div className="text-8xl font-extralight tracking-tight mt-1">
+          {format(currentTime, "h:mm")}
         </div>
       </div>
 
-      {/* buttons */}
-      <div className="text-sm fixed bottom-16 inset-x-0 mx-auto flex flex-row space-x-4 w-max">
-        <div
-          className="hstack flex-col text-white w-24 cursor-pointer"
-          onClick={(e) => props.sleepMac(e)}
-        >
-          <div className="flex-center size-10 bg-gray-700 rounded-full">
-            <span className="i-gg:sleep text-[40px]" />
-          </div>
-          <span>Sleep</span>
+      {/* Spacer */}
+      <div className="flex-1" />
+
+      {/* Bottom: User Avatar and Name */}
+      <div className="text-center mb-8">
+        <img
+          className="rounded-full size-16 mx-auto border-2 border-white/20"
+          src={user.avatar}
+          alt={user.name}
+        />
+        <div className="text-white text-sm font-medium mt-2 opacity-90">
+          {user.name.toLowerCase().replace(" ", "")}
         </div>
-        <div
-          className="hstack flex-col text-white w-24 cursor-pointer"
-          onClick={(e) => props.restartMac(e)}
-        >
-          <div className="flex-center size-10 bg-gray-700 rounded-full">
-            <span className="i-ri:restart-line text-4xl" />
-          </div>
-          <span>Restart</span>
-        </div>
-        <div
-          className="hstack flex-col text-white w-24 cursor-pointer"
-          onClick={(e) => props.shutMac(e)}
-        >
-          <div className="flex-center size-10 bg-gray-700 rounded-full">
-            <span className="i-ri:shut-down-line text-4xl" />
-          </div>
-          <span>Shut Down</span>
-        </div>
+        <div className="text-white/60 text-xs mt-1">Touch ID or Enter Password</div>
       </div>
     </div>
   );

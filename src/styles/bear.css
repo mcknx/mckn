@@ -20,7 +20,7 @@
 .bear .markdown h2::before,
 .bear .markdown h3::before,
 .bear .markdown h4::before {
-  @apply absolute text-sm text-c-400 -left-7 bottom-1;
+  @apply absolute text-sm text-c-400 -left-10 bottom-1;
 }
 
 .bear .markdown h1 {
@@ -63,9 +63,9 @@
   @apply mt-6;
 }
 
-.bear .markdown h2 + p,
-.bear .markdown h3 + p,
-.bear .markdown h4 + p {
+.bear .markdown h2+p,
+.bear .markdown h3+p,
+.bear .markdown h4+p {
   @apply mt-4;
 }
 
@@ -78,7 +78,7 @@
   @apply list-disc;
 }
 
-.bear .markdown ul > li::marker {
+.bear .markdown ul>li::marker {
   @apply text-red-500 dark:text-red-400;
 }
 
@@ -107,7 +107,7 @@
 }
 
 .bear .markdown .token {
-	background: transparent !important;
+  background: transparent !important;
 }
 
 .bear .markdown img {

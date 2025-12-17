@@ -19,7 +19,7 @@ export interface SystemSlice {
 }
 
 export const createSystemSlice: StateCreator<SystemSlice> = (set) => ({
-  dark: false,
+  dark: true,
   volume: 100,
   brightness: 80,
   wifi: true,
@@ -37,7 +37,11 @@ export const createSystemSlice: StateCreator<SystemSlice> = (set) => ({
   toggleAirdrop: () => set((state) => ({ airdrop: !state.airdrop })),
   toggleFullScreen: (v) =>
     set(() => {
-      v ? enterFullScreen() : exitFullScreen();
+      if (v) {
+        enterFullScreen();
+      } else {
+        exitFullScreen();
+      }
       return { fullscreen: v };
     }),
   setVolume: (v) => set(() => ({ volume: v })),

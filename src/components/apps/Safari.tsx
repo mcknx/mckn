@@ -21,87 +21,193 @@ interface NavSectionProps extends NavProps {
   section: SiteSectionData;
 }
 
-const NavSection = ({ width, section, setGoURL }: NavSectionProps) => {
-  const grid = width < 640 ? "grid-cols-4" : "grid-cols-9";
+// Favorite site icons with rounded squares
+const favorites = [
+  {
+    id: "apple",
+    title: "Apple",
+    img: "img/icons/apple-dark.png",
+    link: "https://apple.com"
+  },
+  {
+    id: "icloud",
+    title: "iCloud",
+    img: "img/icons/apple-dark.png",
+    link: "https://icloud.com"
+  },
+  {
+    id: "yahoo",
+    title: "Yahoo",
+    img: "",
+    link: "https://yahoo.com",
+    bg: "bg-purple-600",
+    text: "yahoo!"
+  },
+  {
+    id: "bing",
+    title: "Bing",
+    img: "",
+    link: "https://bing.com",
+    bg: "bg-teal-600",
+    text: "B"
+  },
+  {
+    id: "google",
+    title: "Google",
+    img: "",
+    link: "https://google.com",
+    bg: "bg-white",
+    text: "G"
+  },
+  {
+    id: "wikipedia",
+    title: "Wikipedia",
+    img: "",
+    link: "https://wikipedia.org",
+    bg: "bg-white",
+    text: "W"
+  },
+  {
+    id: "facebook",
+    title: "Facebook",
+    img: "",
+    link: "https://facebook.com",
+    bg: "bg-blue-600",
+    text: "f"
+  },
+  {
+    id: "twitter",
+    title: "Twitter",
+    img: "",
+    link: "https://twitter.com",
+    bg: "bg-black",
+    text: "X"
+  },
+  {
+    id: "linkedin",
+    title: "LinkedIn",
+    img: "",
+    link: "https://linkedin.com",
+    bg: "bg-blue-700",
+    text: "in"
+  }
+];
 
-  return (
-    <div className="mx-auto w-full max-w-screen-md" p="t-8 x-4">
-      <div className="font-medium ml-2" text="xl sm:2xl">
-        {section.title}
-      </div>
-      <div className={`mt-3 grid grid-flow-row ${grid}`}>
-        {section.sites.map((site: SiteData) => (
-          <div key={`safari-nav-${site.id}`} className="h-28 flex flex-col">
-            <div className="size-16 mx-auto rounded-md overflow-hidden bg-white">
-              {site.img ? (
-                <img
-                  src={site.img}
-                  alt={site.title}
-                  title={site.title}
-                  onClick={
-                    site.inner ? () => setGoURL(site.link) : () => window.open(site.link)
-                  }
-                />
-              ) : (
-                <div
-                  className="size-full flex-center cursor-default text-black"
-                  onClick={
-                    site.inner ? () => setGoURL(site.link) : () => window.open(site.link)
-                  }
-                >
-                  <span text-lg>{site.title}</span>
-                </div>
-              )}
-            </div>
-            <span m="t-2 x-auto" text-sm>
-              {site.title}
-            </span>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-};
-
-const numTracker = Math.floor(Math.random() * 99 + 1);
+const numTracker = Math.floor(Math.random() * 10 + 1);
+const trackerPercent = Math.floor(Math.random() * 40 + 50);
 
 const NavPage = ({ width, setGoURL }: NavProps) => {
-  const dark = useStore((state) => state.dark);
-
-  const grid = width < 640 ? "grid-cols-4" : "grid-cols-8";
-  const span = width < 640 ? "col-span-3" : "col-span-7";
-
   return (
-    <div
-      className="w-full safari-content overflow-y-scroll bg-center bg-cover text-c-black"
-      style={{
-        backgroundImage: `url(${dark ? wallpapers.night : wallpapers.day})`
-      }}
-    >
-      <div className="w-full min-h-full pt-8 bg-c-100/80 backdrop-blur-2xl">
-        {/* Favorites */}
-        <NavSection section={websites.favorites} setGoURL={setGoURL} width={width} />
+    <div className="w-full safari-content overflow-y-scroll bg-gray-900 text-white">
+      <div className="w-full min-h-full py-8 px-6">
+        {/* Start Page Banner */}
+        <div className="max-w-4xl mx-auto mb-8">
+          <div className="bg-gray-800 rounded-xl p-4 flex items-center gap-4 relative">
+            <button className="absolute top-2 left-2 text-gray-500 hover:text-white text-xs">
+              ✕
+            </button>
+            <div className="w-24 h-20 bg-gradient-to-br from-cyan-400 to-orange-300 rounded-lg flex items-center justify-center overflow-hidden">
+              <div className="text-xs text-white font-semibold text-center">
+                <div>Favorites</div>
+                <div>Suggestions</div>
+              </div>
+            </div>
+            <div>
+              <div className="font-semibold text-lg">Start Page</div>
+              <div className="text-gray-400 text-sm">
+                Customize your wallpaper and sections that appear when creating new tabs.
+              </div>
+              <button className="mt-2 bg-blue-500 hover:bg-blue-600 text-white text-sm px-4 py-1.5 rounded-md">
+                Customize Start Page
+              </button>
+            </div>
+          </div>
+        </div>
 
-        {/* Frequently Visited */}
-        <NavSection section={websites.freq} setGoURL={setGoURL} width={width} />
+        {/* Favorites */}
+        <div className="max-w-4xl mx-auto mb-8">
+          <div className="font-semibold text-xl mb-4">Favorites</div>
+          <div className="flex flex-wrap gap-4">
+            {favorites.map((site) => (
+              <div
+                key={site.id}
+                className="flex flex-col items-center w-16 cursor-pointer"
+                onClick={() => window.open(site.link)}
+              >
+                <div
+                  className={`size-14 rounded-xl flex items-center justify-center ${site.bg || "bg-gray-700"} shadow-lg`}
+                >
+                  {site.img ? (
+                    <img src={site.img} alt={site.title} className="size-8" />
+                  ) : (
+                    <span
+                      className={`text-lg font-bold ${site.bg === "bg-white" ? "text-black" : "text-white"}`}
+                    >
+                      {site.text}
+                    </span>
+                  )}
+                </div>
+                <span className="text-xs mt-1.5 text-gray-300 text-center truncate w-full">
+                  {site.title}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
 
         {/* Privacy Report */}
-        <div className="mx-auto w-full max-w-screen-md" p="t-8 x-4 b-16">
-          <div font="medium" text="xl sm:2xl">
-            Privacy Report
+        <div className="max-w-4xl mx-auto mb-8">
+          <div className="font-semibold text-xl mb-4">Privacy Report</div>
+          <div className="bg-gray-800 rounded-xl p-6">
+            <div className="flex gap-6">
+              {/* Left side */}
+              <div className="flex-1">
+                <div className="text-green-400 text-4xl mb-4">
+                  <span className="i-ph:shield-check-fill" />
+                </div>
+                <div className="text-white">
+                  Safari prevents trackers from profiling you.
+                </div>
+                <button className="text-blue-400 text-sm mt-4 hover:underline">
+                  Show More
+                </button>
+              </div>
+              {/* Right side - Stats */}
+              <div className="flex-1 space-y-3">
+                <div className="text-xs text-gray-400">Last 30 days</div>
+                <div className="flex gap-3">
+                  <div className="flex-1 bg-gray-700 rounded-lg p-3">
+                    <div className="text-xs text-gray-400 mb-1">
+                      Trackers prevented from profiling you
+                    </div>
+                    <div className="text-2xl font-semibold">{numTracker}</div>
+                  </div>
+                  <div className="flex-1 bg-gray-700 rounded-lg p-3">
+                    <div className="text-xs text-gray-400 mb-1">
+                      Websites that contacted trackers
+                    </div>
+                    <div className="text-2xl font-semibold">{trackerPercent}%</div>
+                  </div>
+                </div>
+                <div className="bg-gray-700 rounded-lg p-3">
+                  <div className="text-xs text-gray-400 mb-1">Most contacted tracker</div>
+                  <div className="text-sm">
+                    googletagmanager.com was prevented from profiling you across 2
+                    websites
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-          <div
-            className={`h-16 w-full mt-4 grid ${grid} shadow-md rounded-xl text-sm`}
-            bg="gray-50/70 dark:gray-600/50"
-          >
-            <div className="col-start-1 col-span-1 flex-center space-x-2">
-              <span className="i-fa-solid:shield-alt text-2xl" />
-              <span className="text-xl">{numTracker}</span>
-            </div>
-            <div className={`col-start-2 ${span} hstack px-2`}>
-              In the last seven days, Safari has prevent {numTracker} tracker from
-              profiling you.
-            </div>
+        </div>
+
+        {/* Suggestions placeholder */}
+        <div className="max-w-4xl mx-auto">
+          <div className="font-semibold text-xl mb-4">Suggestions</div>
+          <div className="flex gap-4">
+            <div className="w-48 h-28 bg-gradient-to-r from-blue-500 to-cyan-400 rounded-xl"></div>
+            <div className="w-48 h-28 bg-gradient-to-r from-green-500 to-emerald-400 rounded-xl"></div>
+            <div className="w-48 h-28 bg-gradient-to-r from-purple-500 to-pink-400 rounded-xl"></div>
           </div>
         </div>
       </div>

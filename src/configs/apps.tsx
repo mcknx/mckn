@@ -10,23 +10,13 @@ const apps: AppsData[] = [
     img: "img/icons/launchpad.png"
   },
   {
-    id: "bear",
-    title: "Bear",
-    desktop: true,
-    width: 860,
-    height: 500,
-    show: true,
-    y: -40,
-    img: "img/icons/bear.png",
-    content: <Bear />
-  },
-  {
     id: "typora",
-    title: "Typora",
+    title: "Notes",
     desktop: true,
-    width: 600,
-    height: 580,
-    y: -20,
+    width: 1300,
+    height: 650,
+    show: true,
+    x: -200,
     img: "img/icons/typora.png",
     content: <Typora />
   },
@@ -37,7 +27,6 @@ const apps: AppsData[] = [
     width: 1024,
     minWidth: 375,
     minHeight: 200,
-    x: -20,
     img: "img/icons/safari.png",
     content: <Safari />
   },
@@ -47,8 +36,6 @@ const apps: AppsData[] = [
     desktop: true,
     width: 900,
     height: 600,
-    x: 80,
-    y: -30,
     img: "img/icons/vscode.png",
     content: <VSCode />
   },
@@ -62,8 +49,6 @@ const apps: AppsData[] = [
     minWidth: 350 * 1.7,
     minHeight: 350 + appBarHeight,
     aspectRatio: 1.7,
-    x: -80,
-    y: 20,
     content: <FaceTime />
   },
   {
@@ -78,14 +63,16 @@ const apps: AppsData[] = [
     title: "Github",
     desktop: false,
     img: "img/icons/github.png",
-    link: "https://github.com/Renovamen/playground-macos"
+    link: "https://github.com/mcknx"
   },
   {
     id: "avatar",
     title: "Avatar",
     desktop: true,
-    width: 600,
-    height: 600,
+    width: 500,
+    height: 550,
+    show: true,
+    x: 400,
     img: "img/photo/avatar_3d.png",
     content: <AvatarApp />
   }
