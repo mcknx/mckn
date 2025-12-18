@@ -53,6 +53,30 @@ const Highlighter = (dark: boolean): any => {
       ) : (
         <code className={className}>{children}</code>
       );
+    },
+    a({ node, children, href, ...props }: any) {
+      if (href && href.startsWith("app:")) {
+        const appId = href.replace("app:", "");
+        return (
+          <a
+            className="text-blue-500 hover:underline cursor-pointer"
+            onClick={(e) => {
+              e.preventDefault();
+              window.dispatchEvent(
+                new CustomEvent("open-app", { detail: { id: appId } })
+              );
+            }}
+            {...props}
+          >
+            {children}
+          </a>
+        );
+      }
+      return (
+        <a href={href} {...props}>
+          {children}
+        </a>
+      );
     }
   };
 };
@@ -180,6 +204,7 @@ const Content = ({ contentID, contentURL }: ContentProps) => {
           [rehypeExternalLinks, { target: "_blank", rel: "noopener noreferrer" }]
         ]}
         components={Highlighter(dark as boolean)}
+        urlTransform={(url) => url}
       >
         {storeMd[contentID]}
       </ReactMarkdown>

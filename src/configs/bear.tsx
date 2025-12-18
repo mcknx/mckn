@@ -13,16 +13,10 @@ const bear: BearData[] = [
         icon: "i-ph:user-fill",
         excerpt: "Passionate and dedicated software developer with a strong..."
       },
-      {
-        id: "github-stats",
-        title: "Github Stats",
-        file: "markdown/github-stats.md",
-        icon: "i-icon-park-outline:github",
-        excerpt: "Here are some status about my github account..."
-      },
+
       {
         id: "about-site",
-        title: "About This Site",
+        title: "About Me and My Portfolio",
         file: "markdown/about-site.md",
         icon: "i-ph:globe-fill",
         excerpt: "Something about this personal portfolio site..."
