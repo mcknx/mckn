@@ -9,6 +9,7 @@ interface ResumeProps {
 
 const Resume = ({ isStandalone = false }: ResumeProps) => {
   const [aboutMe, setAboutMe] = useState("");
+  const [experience, setExperience] = useState("");
   const [projects, setProjects] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -28,19 +29,25 @@ const Resume = ({ isStandalone = false }: ResumeProps) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // Adjust fetch path for standalone mode if needed, but assuming relative to public root works
-        // If in #/resume, public/markdown/about-me.md is accessible at /markdown/about-me.md? Yes.
+        // ... (fetch logic) ...
 
         // 1. Fetch About Me
         const aboutRes = await fetch("markdown/about-me.md");
         const aboutText = await aboutRes.text();
 
-        // Extract biography part (everything after ## Biography until next ## or end)
-        const bioMatch = aboutText.match(/## Biography\n([\s\S]*?)(##|$)/);
+        // Extract biography part
+        // updated regex to only stop at next ## followed by space (H2) or end
+        const bioMatch = aboutText.match(/## Biography\n([\s\S]*?)(?=\n##\s|$)/);
         const bioText = bioMatch ? bioMatch[1].trim() : aboutText;
         setAboutMe(bioText);
 
-        // 2. Fetch Projects
+        // Extract Experience part
+        // updated regex to only stop at next ## followed by space (H2) or end
+        const expMatch = aboutText.match(/## Experience\n([\s\S]*?)(?=\n##\s|$)/);
+        const expText = expMatch ? expMatch[1].trim() : "";
+        setExperience(expText);
+
+        // 2. Fetch Projects (Logic remains ...)
         const projectList = bear.find((b) => b.id === "project")?.md || [];
 
         const projectPromises = projectList.map(async (p) => {
@@ -48,11 +55,13 @@ const Resume = ({ isStandalone = false }: ResumeProps) => {
             const res = await fetch(p.file);
             const text = await res.text();
 
-            // Extract "Technology Used" line if present
+            // ... (regex parsers) ...
+
+            // Extract "Technology Used"
             const techMatch = text.match(/\*\*Technology Used:\*\*(.*?)(\n|$)/);
             const techStack = techMatch ? techMatch[1].trim() : "";
 
-            // Extract Overview or description
+            // Extract Overview
             const overviewMatch = text.match(/## Overview\n([\s\S]*?)($)/);
             const overview = overviewMatch ? overviewMatch[1].trim() : p.excerpt;
 
@@ -78,16 +87,18 @@ const Resume = ({ isStandalone = false }: ResumeProps) => {
     fetchData();
   }, []);
 
+  // ... (handlePrint) ...
+
   const handlePrint = () => {
     if (isStandalone) {
       window.print();
     } else {
-      // Open hash link in new tab
       window.open(window.location.origin + "/#/resume", "_blank");
     }
   };
 
   if (loading) {
+    // ... (loader) ...
     return (
       <div
         className={`flex items-center justify-center h-full ${isStandalone ? "text-gray-800" : "text-white"}`}
@@ -101,32 +112,32 @@ const Resume = ({ isStandalone = false }: ResumeProps) => {
     <div
       className={`w-full h-full bg-white overflow-y-auto flex flex-col items-center ${isStandalone ? "p-0" : "p-8"} print:p-0 print:overflow-visible print:h-auto print:block`}
     >
-      {/* Print Button (Floating) */}
+      {/* Print Button (Floating) - logic remains ... */}
       <button
         onClick={handlePrint}
-        className="fixed bottom-8 right-8 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-full shadow-lg font-semibold flex items-center gap-2 transition-all print:hidden z-50"
+        className="fixed bottom-8 right-8 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-full shadow-lg font-semibold flex items-center gap-2 transition-all print:hidden z-50 hover:scale-105 active:scale-95"
       >
         <span className="i-ph:printer-fill text-xl" />
         {isStandalone ? "Print Page" : "Open Printable Version"}
       </button>
 
-      {/* Resume Container without Shadow Box */}
-      {/* Ensure print styles reset the body/html height constraints if they exist */}
+      {/* ... (container and styles) ... */}
       <style>{`
-                @media print {
-                    html, body, #root {
-                        height: auto !important;
-                        overflow: visible !important;
-                        margin: 0 !important;
-                    }
-                }
-            `}</style>
+           @media print {
+               html, body, #root {
+                   height: auto !important;
+                   overflow: visible !important;
+                   margin: 0 !important;
+               }
+           }
+       `}</style>
       <div
         id="resume-content"
         className="w-full max-w-[210mm] bg-white p-8 text-gray-800 text-sm leading-6 print:w-full print:p-0 print:max-w-none print:h-auto"
       >
-        {/* Header */}
+        {/* Header - (remains same) */}
         <header className="border-b-2 border-gray-800 pb-6 mb-6">
+          {/* ... header content ... */}
           <h1 className="text-4xl font-bold text-gray-900 uppercase tracking-tight mb-2">
             McKeen Asma
           </h1>
@@ -163,6 +174,7 @@ const Resume = ({ isStandalone = false }: ResumeProps) => {
 
         {/* Professional Summary */}
         <section className="mb-6">
+          {/* ... */}
           <h2 className="text-lg font-bold text-gray-900 uppercase border-b border-gray-300 mb-3 pb-1">
             Professional Summary
           </h2>
@@ -173,6 +185,7 @@ const Resume = ({ isStandalone = false }: ResumeProps) => {
 
         {/* Technical Skills */}
         <section className="mb-6">
+          {/* ... */}
           <h2 className="text-lg font-bold text-gray-900 uppercase border-b border-gray-300 mb-3 pb-1">
             Technical Skills
           </h2>
@@ -191,13 +204,26 @@ const Resume = ({ isStandalone = false }: ResumeProps) => {
           </div>
         </section>
 
-        {/* Experience / Projects */}
+        {/* Work Experience */}
+        {experience && (
+          <section className="mb-6">
+            <h2 className="text-lg font-bold text-gray-900 uppercase border-b border-gray-300 mb-4 pb-1">
+              Work Experience
+            </h2>
+            <div className="text-gray-700 text-sm [&>h3]:text-base [&>h3]:font-bold [&>h3]:text-gray-900 [&>h3]:mb-0 [&>p]:mb-3 [&>p>em]:text-gray-500 [&>p>em]:text-xs [&>p>em]:not-italic [&>p>em]:block [&>p>em]:mb-1 [&>ul]:list-disc [&>ul]:pl-5 [&>ul]:mb-3 text-justify">
+              <ReactMarkdown>{experience}</ReactMarkdown>
+            </div>
+          </section>
+        )}
+
+        {/* Projects */}
         <section>
           <h2 className="text-lg font-bold text-gray-900 uppercase border-b border-gray-300 mb-4 pb-1">
-            Key Projects & Experience
+            Key Projects
           </h2>
 
           <div className="space-y-5">
+            {/* ... mapped projects ... */}
             {projects.map((project) => (
               <div key={project.id}>
                 <div className="flex justify-between items-baseline mb-1">
@@ -221,8 +247,6 @@ const Resume = ({ isStandalone = false }: ResumeProps) => {
                   </div>
                 )}
                 <div className="text-gray-700 text-sm">
-                  {/* Reuse ReactMarkdown for rich text if overview has markup, 
-                      or just text. Using ReactMarkdown to be safe. */}
                   <ReactMarkdown
                     components={{
                       p: ({ node, ...props }) => (
@@ -240,6 +264,7 @@ const Resume = ({ isStandalone = false }: ResumeProps) => {
 
         {/* Education */}
         <section className="mt-6 break-inside-avoid">
+          {/* ... */}
           <h2 className="text-lg font-bold text-gray-900 uppercase border-b border-gray-300 mb-3 pb-1">
             Education
           </h2>
