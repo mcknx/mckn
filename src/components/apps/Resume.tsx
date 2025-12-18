@@ -200,7 +200,7 @@ const Resume = ({ isStandalone = false }: ResumeProps) => {
             <span>Next.js, Express, Redux, Context API, Firebase, Git, GitHub</span>
 
             <span className="font-bold text-gray-900">Tools:</span>
-            <span>VS Code, Jira, Trello, Figma, Postman</span>
+            <span>VS Code, Cursor, Antigravity, n8n, Jira, Trello, Figma, Postman</span>
           </div>
         </section>
 

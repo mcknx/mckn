@@ -12,7 +12,7 @@ About myself I'm a guy who's passionate about both the technical side and the us
 - ReactJS, TailwindCSS, HTML5, CSS3, Javascript, MongoDB, React Native, NodeJS, Rest API
 
 ### Other
-- ExpressJS, NextJS, Axios, Context API, Redux, C#, Laravel, Python, Angular, VueJS, Material UI, AntD, Bootstrap, Trello, Jira, Git, Github, Bitbucket
+- ExpressJS, NextJS, Axios, Context API, Redux, C#, Laravel, Python, Angular, VueJS, Material UI, AntD, Bootstrap, Trello, Jira, Git, Github, Bitbucket, Cursor, Antigravity, n8n
 
 ## Experience
 
