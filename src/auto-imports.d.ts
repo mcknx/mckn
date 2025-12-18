@@ -18,6 +18,8 @@ declare global {
   const Launchpad: typeof import('./components/Launchpad')['default']
   const MenuItem: typeof import('./components/menus/base')['MenuItem']
   const MenuItemGroup: typeof import('./components/menus/base')['MenuItemGroup']
+  const MuteFab: typeof import('./components/MuteFab')['default']
+  const Resume: typeof import('./components/apps/Resume')['default']
   const Safari: typeof import('./components/apps/Safari')['default']
   const SoundManager: typeof import('./components/SoundManager')['default']
   const Spotlight: typeof import('./components/Spotlight')['default']

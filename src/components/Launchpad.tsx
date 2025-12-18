@@ -3,25 +3,28 @@ import { wallpapers, launchpadApps } from "~/configs";
 interface LaunchpadProps {
   show: boolean;
   toggleLaunchpad: (target: boolean) => void;
+  openApp: (id: string) => void;
 }
 
 const placeholderText = "Search";
 
-export default function Launchpad({ show, toggleLaunchpad }: LaunchpadProps) {
+export default function Launchpad({ show, toggleLaunchpad, openApp }: LaunchpadProps) {
   const dark = useStore((state) => state.dark);
 
   const [searchText, setSearchText] = useState("");
   const [focus, setFocus] = useState(false);
 
   const search = () => {
-    if (searchText === "") return launchpadApps;
+    // Filter to only show Resume app as per user request
+    const list = launchpadApps.filter((item) => item.id === "resume");
+
+    if (searchText === "") return list;
     const text = searchText.toLowerCase();
-    const list = launchpadApps.filter((item) => {
+    return list.filter((item) => {
       return (
         item.title.toLowerCase().includes(text) || item.id.toLowerCase().includes(text)
       );
     });
-    return list;
   };
 
   const close = show ? "" : "opacity-0 invisible transition-opacity duration-200";
@@ -69,7 +72,14 @@ export default function Launchpad({ show, toggleLaunchpad }: LaunchpadProps) {
                 href={app.link}
                 target="_blank"
                 rel="noreferrer"
-                onClick={(e) => e.stopPropagation()}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  if (app.id === "resume") {
+                    e.preventDefault();
+                    toggleLaunchpad(false);
+                    openApp("resume");
+                  }
+                }}
               >
                 <img src={app.img} alt={app.title} title={app.title} />
               </a>

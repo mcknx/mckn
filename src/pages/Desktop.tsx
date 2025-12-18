@@ -23,6 +23,8 @@ interface DesktopState {
   spotlight: boolean;
 }
 
+import MuteFab from "~/components/MuteFab";
+
 export default function Desktop(props: MacActions) {
   const [state, setState] = useState({
     showApps: {},
@@ -288,7 +290,11 @@ export default function Desktop(props: MacActions) {
       )}
 
       {/* Launchpad */}
-      <Launchpad show={state.showLaunchpad} toggleLaunchpad={toggleLaunchpad} />
+      <Launchpad
+        show={state.showLaunchpad}
+        toggleLaunchpad={toggleLaunchpad}
+        openApp={openApp}
+      />
 
       {/* Dock */}
       <Dock
@@ -298,6 +304,7 @@ export default function Desktop(props: MacActions) {
         toggleLaunchpad={toggleLaunchpad}
         hide={state.hideDockAndTopbar}
       />
+      <MuteFab />
     </div>
   );
 }

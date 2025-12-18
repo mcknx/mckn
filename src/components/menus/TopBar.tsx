@@ -110,6 +110,11 @@ const TopBar = (props: TopBarProps) => {
     controls.play();
   }, []);
 
+  // Sync audio volume with global store (e.g. from MuteFab)
+  useEffect(() => {
+    controls.volume(volume / 100);
+  }, [volume]);
+
   // Lower music volume when avatar speaks
   useEffect(() => {
     const handleAvatarSpeaking = (e: CustomEvent<{ speaking: boolean }>) => {

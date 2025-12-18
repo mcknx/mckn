@@ -1,14 +1,15 @@
 import { appBarHeight } from "~/utils";
 import type { AppsData } from "~/types";
 import AvatarApp from "~/components/apps/AvatarApp";
+import Resume from "~/components/apps/Resume";
 
 const apps: AppsData[] = [
-  {
-    id: "launchpad",
-    title: "Launchpad",
-    desktop: false,
-    img: "img/icons/launchpad.png"
-  },
+  // {
+  //   id: "launchpad",
+  //   title: "Launchpad",
+  //   desktop: false,
+  //   img: "img/icons/launchpad.png"
+  // },
   {
     id: "typora",
     title: "Notes",
@@ -75,6 +76,16 @@ const apps: AppsData[] = [
     x: 400,
     img: "img/photo/avatar_3d.png",
     content: <AvatarApp />
+  },
+  {
+    id: "resume",
+    title: "Resume",
+    desktop: true,
+    width: 900,
+    height: 800,
+    show: false,
+    img: "img/icons/launchpad/resume.png",
+    content: <Resume />
   }
 ];
 

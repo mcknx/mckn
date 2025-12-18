@@ -64,12 +64,30 @@ export default function App() {
   }
 }
 
+import Resume from "~/components/apps/Resume";
+
 const rootElement = document.getElementById("root") as HTMLElement;
 const root = createRoot(rootElement);
 
-root.render(
-  <React.StrictMode>
-    <SoundManager />
-    <App />
-  </React.StrictMode>
-);
+const renderApp = () => {
+  if (window.location.hash === "#/resume") {
+    root.render(
+      <React.StrictMode>
+        <Resume isStandalone={true} />
+      </React.StrictMode>
+    );
+  } else {
+    root.render(
+      <React.StrictMode>
+        <SoundManager />
+        <App />
+      </React.StrictMode>
+    );
+  }
+};
+
+// Initial Render
+renderApp();
+
+// Handle hash changes (optional, but good for navigation)
+window.addEventListener("hashchange", renderApp);
