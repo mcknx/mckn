@@ -17,7 +17,10 @@ About myself I'm a guy who's passionate about both the technical side and the us
 ## Experience
 
 ### Full Stack Developer @ Faithful Development (Work from Home)
-*April 2024 to Present*
+*February 2025 to Present (part-time)* 
+- Working as a part-time developer focused on maintenance and bug fixing for legacy mobile and full-stack applications. Responsible for resolving tickets, producing consistent outputs, and providing daily updates on project status.
+
+*April 2024 to February 2025 (full-time)*
 - Developed Web, Mobile and Backend solutions. Coordinate with manager regularly.
 
 ### Frontend Developer @ Steelx Pty Ltd (Work from Home)
